@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 	private Rigidbody2D rb2d;
 	private Vector2 movement; 
-	private float lastDirection;
+	private float angle;
 	public Animator animator; 
 	public float speed;
 	
@@ -26,34 +26,34 @@ public class PlayerController : MonoBehaviour
 		movement = new Vector2(moveHorizontal, moveVertical);
 	
 		if (movement.x < 0.1 && movement.x > -0.1  && movement.y > 0.1){ // north 
-			lastDirection = 90;
+			angle = 90;
 		}
 		else if (movement.x < 0.1 && movement.x > -0.1  && movement.y < -0.1){ // south
-			lastDirection = 270;
+			angle = 270;
 		}
 		else if (movement.x > 0.1 && movement.y < 0.1 && movement.y > -0.1){ // east
-			lastDirection = 0;
+			angle = 0;
 		}
 		else if (movement.x < -0.1 && movement.y < 0.1 && movement.y > -0.1){ // west
-			lastDirection = 180;
+			angle = 180;
 		}
 		else if (movement.x > 0.1 && movement.y > 0.1){ // north east
-			lastDirection = 45;
+			angle = 45;
 		}
 		else if (movement.x > 0.1 && movement.y < -0.1){ // south east
-			lastDirection = 315;
+			angle = 315;
 		}
 		else if (movement.x < -0.1 && movement.y > 0.1){ //  north west
-			lastDirection = 135;
+			angle = 135;
 		}
 		else if (movement.x < -0.1 && movement.y < -0.1){ // south west
-			lastDirection = 225;
+			angle = 225;
 		}
 		
 	
 		animator.SetFloat(name: "speed", value: Mathf.Max(Mathf.Abs(movement.x), Mathf.Abs(movement.y)));
-		transform.rotation = Quaternion.Euler(0,0,lastDirection);
-		rb2d.AddForce(movement * speed);		
+		transform.rotation = Quaternion.Euler(0,0,angle);
+		rb2d.AddForce(movement.normalized * speed);		
 	}
 }
 
