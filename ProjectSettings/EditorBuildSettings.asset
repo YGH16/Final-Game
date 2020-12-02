@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Mission 1/CutScene 1.1.unity
     guid: 9ede32db869f80846be87c7fec609da8
   - enabled: 1
+    path: Assets/Scenes/Mission 1/CutScene 1.2.unity
+    guid: 4ff96f2e00e0c4e46b6923f7cc2e32ad
+  - enabled: 1
     path: Assets/Scenes/Mission 1/Mission 1.unity
     guid: ce6affb69608f574fb4c84b8c2ec7bf9
   - enabled: 1

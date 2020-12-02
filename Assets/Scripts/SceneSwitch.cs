@@ -15,6 +15,11 @@ public class SceneSwitch : MonoBehaviour
 	{
 		Application.Quit();
 	}
+
+	public void MainMenu()
+    {
+		SceneManager.LoadScene(0);
+    }
 	
 	public void missionOne()
 	{
