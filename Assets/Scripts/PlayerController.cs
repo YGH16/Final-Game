@@ -14,16 +14,12 @@ public class PlayerController : MonoBehaviour
 	{
 		rb2d = GetComponent<Rigidbody2D>();
 	}
-	void update(){
-		
-		
-	}
-	void FixedUpdate()
-	{
+	void Update(){
 		float moveHorizontal = Input.GetAxisRaw("Horizontal");
 		float moveVertical = Input.GetAxisRaw("Vertical");
 		
-		movement = new Vector2(moveHorizontal, moveVertical);
+		movement = new Vector2(moveHorizontal, moveVertical).normalized;
+		Debug.Log(movement);
 	
 		if (movement.x < 0.1 && movement.x > -0.1  && movement.y > 0.1){ // north 
 			angle = 90;
@@ -52,8 +48,13 @@ public class PlayerController : MonoBehaviour
 		
 	
 		animator.SetFloat(name: "speed", value: Mathf.Max(Mathf.Abs(movement.x), Mathf.Abs(movement.y)));
+	}
+
+	void FixedUpdate()
+	{
 		transform.rotation = Quaternion.Euler(0,0,angle);
-		rb2d.AddForce(movement.normalized * speed);		
+		//rb2d.AddForce(movement.normalized * speed);		
+		rb2d.velocity = new Vector2(movement.x*speed, movement.y*speed);
 	}
 }
 
